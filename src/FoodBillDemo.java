@@ -8,6 +8,7 @@ public class FoodBillDemo {
         mealPrice = sc.nextDouble();
         System.out.println("Enter the percentage number of tip: ");
         tip = sc.nextDouble();
+        //demo
         System.out.println("Enter the percentage number of tax");
         tax = sc.nextDouble();
         double total;
