@@ -1,3 +1,5 @@
+package Week1;
+
 public class NumberSum {
     public static void main(String[] args) {
         int count=0,i=0;

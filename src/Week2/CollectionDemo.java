@@ -1,3 +1,5 @@
+package Week2;
+
 import java.util.*;
 
 public class CollectionDemo {
@@ -56,5 +58,15 @@ public class CollectionDemo {
         dq.addLast(899);
         dq.addLast(999);
         System.out.println(dq);
+        LinkedHashSet<String> hs=new LinkedHashSet<>();
+        hs.add("Hello");
+        hs.add("World");
+        hs.add("Nepal");
+        hs.add("null");
+        Iterator<String> itr2= hs.iterator();
+       for (String i:hs){
+           System.out.println(" "+itr2.next());
+       }
+
     }
 }

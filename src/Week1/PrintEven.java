@@ -1,3 +1,5 @@
+package Week1;
+
 public class PrintEven {
     public static void main(String[] args) {
         System.out.println("The even number from 1 to 100 are: ");

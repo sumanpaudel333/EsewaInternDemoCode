@@ -1,3 +1,5 @@
+package Week1;
+
 public class IntChecker {
     public int getSingNum(int[] nums) {
         int count = 0;

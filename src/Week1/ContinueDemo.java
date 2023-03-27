@@ -1,3 +1,5 @@
+package Week1;
+
 public class ContinueDemo {
     public static void main(String[] args){
         int[] integerArr={10,20,30,40,50};

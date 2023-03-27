@@ -1,3 +1,5 @@
+package Week1;
+
 import java.util.Scanner;
 public class NumRev {
    static int reverse(int num){

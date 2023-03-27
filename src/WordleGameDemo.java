@@ -8,7 +8,6 @@ public class WordleGameDemo {
         Scanner sc = new Scanner(System.in);
         String[] guess = new String[6];
         String wordOfTheDay = "Nepal".toUpperCase();
-        char[] wotd = wordOfTheDay.toCharArray();
         StringBuilder b=new StringBuilder();
         for (int i = 0; i < guess.length; i++) {
             System.out.println("Enter a word");

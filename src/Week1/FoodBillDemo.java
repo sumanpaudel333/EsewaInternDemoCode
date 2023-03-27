@@ -1,3 +1,5 @@
+package Week1;
+
 import java.util.Scanner;
 import java.lang.Math;
 public class FoodBillDemo {
