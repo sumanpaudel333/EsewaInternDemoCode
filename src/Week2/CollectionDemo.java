@@ -14,12 +14,12 @@ public class CollectionDemo {
             System.out.println(" " + num.get(i));
         }
         LinkedList<Integer> ll = new LinkedList<>();
-        for (int i = 0; i <=5; i++) {
+        for (int i = 0; i <= 5; i++) {
             ll.add(i);
         }
         System.out.println(ll);
         ll.remove(2);
-        for (int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println(" " + ll.get(i));
         }
 
