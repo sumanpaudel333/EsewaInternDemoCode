@@ -1,13 +1,9 @@
 package Week2;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-class Book {
+class Books {
     List<String> book = new LinkedList<>();
-
 
     void addBook(String bookName) {
         book.add(bookName);
@@ -35,7 +31,7 @@ class Book {
 
 public class ListDemo {
     public static void main(String[] args) {
-        Book bk = new Book();
+        Books bk = new Books();
         Scanner sc = new Scanner(System.in);
         int nob;
         System.out.println("Enter the number of books you want to maintain record of: ");

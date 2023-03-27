@@ -10,7 +10,6 @@ public class VectorExample {
         cars.add("Mercedes");
         cars.add("Porsche");
         cars.add("Jaguar");
-
         String jag = cars.get(3);
         System.out.println(jag);
         Enumeration<String> vector = cars.elements();
