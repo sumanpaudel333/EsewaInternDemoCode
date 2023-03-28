@@ -10,8 +10,9 @@ public class LinkedHashSetDemo {
         hs.add("World");
         hs.add("Nepal");
         hs.add("null");
+        hs.add(null);
         Iterator<String> itr2 = hs.iterator();
-        for (String i : hs) {
+        while (itr2.hasNext()) {
             System.out.println(" " + itr2.next());
         }
     }
