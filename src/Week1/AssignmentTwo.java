@@ -1,5 +1,6 @@
 package Week1;
 
+import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -60,6 +61,9 @@ public class AssignmentTwo {
         bookDetail.add(new BookSort("Java", 567, 1));
         bookDetail.add(new BookSort("PHP", 900, 2));
         bookDetail.add(new BookSort("C++", 780, 3));
-        System.out.println(bookDetail);
+        Iterator<BookSort> itr= bookDetail.iterator();
+        while (itr.hasNext()){
+            System.out.println(itr.next());
+        }
     }
 }

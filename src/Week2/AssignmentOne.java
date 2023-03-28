@@ -16,7 +16,7 @@ class Book{
     void showBook() {
         Iterator<String> itr = book.iterator();
         Iterator<Integer> itr1 = bookPrice.iterator();
-        for (String i : book) {
+        while (itr.hasNext()){
             System.out.println(" " + itr.next());
             System.out.println(" " + itr1.next());
         }
@@ -29,7 +29,7 @@ class Book{
         book.remove(bookName);
         System.out.println("The list of books after removal are: ");
         Iterator<String> itr = book.iterator();
-        for (String i : book) {
+        while (itr.hasNext()){
             System.out.println(" " + itr.next());
         }
     }
