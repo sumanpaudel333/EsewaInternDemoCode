@@ -15,5 +15,9 @@ public class StreamDemo {
         Stream<Integer> stm=numbers.stream();
         List<Integer> newList=stm.filter(i->i%2==0).toList();
         System.out.println(newList);
+
+        List<String> name=List.of("Suman","Saurav","Shreejal","Santosh","Preet","Prem","Ajit","Ayush");
+        List<String> nameWithS=name.stream().filter(e->e.startsWith("S")).toList();
+        System.out.println(nameWithS);
     }
 }
