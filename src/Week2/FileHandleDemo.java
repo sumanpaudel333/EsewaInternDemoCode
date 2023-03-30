@@ -46,7 +46,7 @@ public class FileHandleDemo {
             System.out.println("File Deleted Successfully: "+myFile);
         }
         else {
-            System.out.println("Error Occured while deleting a file");
+            System.out.println("Error Occurred while deleting a file");
         }
     }
 }

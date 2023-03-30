@@ -71,6 +71,7 @@ public class CSVFileReadDemo {
     public static void main(String[] args) {
         String path = "C:/Users/suman/OneDrive/Documents/Intern/MOCK_FLIGHT_DATA.csv";
         String line;
+        ArrayList<String[]> csvData = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             while ((line = br.readLine()) != null) {
@@ -81,6 +82,7 @@ public class CSVFileReadDemo {
                 String deptTime = values[3];
                 String currLocation = values[4];
                 Flight fl = new Flight(fid, currAlFit, destAirportCode, deptTime, currLocation);
+                csvData.add(values);
                 System.out.println(fl.toString());
             }
         } catch (FileNotFoundException e) {
@@ -90,5 +92,7 @@ public class CSVFileReadDemo {
             System.out.println("Unable to read file");
             e.printStackTrace();
         }
+        String[][] dataArray=new String[csvData.size()][];
+        csvData.toArray(dataArray);
     }
 }
