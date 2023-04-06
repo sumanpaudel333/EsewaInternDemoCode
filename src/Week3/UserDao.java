@@ -29,7 +29,7 @@ public class UserDao {
 
     public static boolean removeUserFromDb(String uname) {
         boolean flag = false;
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             Connection cp = DBConnectionProvider.createConnection();
 
@@ -47,13 +47,14 @@ public class UserDao {
                 cp.setAutoCommit(true);
                 pst.executeUpdate();
                 System.out.println("Transaction committed successfully!");
-                flag=true;
+                flag = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return flag;
     }
+
     public static void viewUserFromDb() {
         try {
             Connection cp = DBConnectionProvider.createConnection();
@@ -61,31 +62,32 @@ public class UserDao {
             //deleting user
             String q = "select * from user";
             Statement pst = cp.createStatement();
-            ResultSet rst=pst.executeQuery(q);
-            while (rst.next()){
-                String uname=rst.getString(1);
-                String email=rst.getString(2);
-                System.out.println("Uname: "+uname);
-                System.out.println("Email: "+email);
+            ResultSet rst = pst.executeQuery(q);
+            while (rst.next()) {
+                String uname = rst.getString(1);
+                String email = rst.getString(2);
+                System.out.println("Uname: " + uname);
+                System.out.println("Email: " + email);
                 System.out.println("-------------------------------");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public static boolean updateUserFromDb(String uname) {
         boolean flag = false;
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             Connection cp = DBConnectionProvider.createConnection();
 
             //updating user
-            System.out.println("Enter new username to update for: "+uname);
-            String newUsername= br.readLine();
-            System.out.println("Enter new email to update for: "+uname);
-            String newEmail= br.readLine();
-            System.out.println("Enter new password to update for: "+uname);
-            String newPassword= br.readLine();
+            System.out.println("Enter new username to update for: " + uname);
+            String newUsername = br.readLine();
+            System.out.println("Enter new email to update for: " + uname);
+            String newEmail = br.readLine();
+            System.out.println("Enter new password to update for: " + uname);
+            String newPassword = br.readLine();
             String q = "UPDATE user SET username = ?, email= ?, password=? WHERE username =?";
             PreparedStatement pst = cp.prepareStatement(q);
             pst.setString(1, newUsername);
@@ -102,7 +104,7 @@ public class UserDao {
                 cp.setAutoCommit(true);
                 pst.executeUpdate();
                 System.out.println("Update committed successfully!");
-                flag=true;
+                flag = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
