@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DbConnection {
 static Connection conn;
 public static Connection connectionProvider() throws SQLException, ClassNotFoundException {
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
     String url="jdbc:mysql://localhost:3306/jdbc_demo";
     String user="root";
     String pass="paudel123";

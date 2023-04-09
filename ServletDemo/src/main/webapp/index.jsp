@@ -10,7 +10,7 @@
       margin: 8px 0;
       box-sizing: border-box;
     }
-    input[type=button], input[type=submit], input[type=reset] {
+    input[type=button], input[type=submit], input[type=reset] a{
       background-color: #04AA6D;
       border: none;
       color: white;
@@ -32,5 +32,6 @@
   <input type="password" name="password" id="password"><br>
   <input type="submit">
 </form>
+<button><a href="${pageContext.request.contextPath}/view">View Users</a></button>
 </body>
 </html>

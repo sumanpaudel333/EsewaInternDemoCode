@@ -11,5 +11,12 @@
         <servlet-name>FirstServlet</servlet-name>
         <url-pattern>/first</url-pattern>
     </servlet-mapping>
-
+<servlet>
+    <servlet-name>ViewUser</servlet-name>
+    <servlet-class>com.example.servletdemo.ViewUser</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>ViewUser</servlet-name>
+        <url-pattern>/view</url-pattern>
+    </servlet-mapping>
 </web-app>
