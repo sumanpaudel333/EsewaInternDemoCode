@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -15,6 +16,7 @@ public class TestSimpleInterestCalculator {
         simpleInterestCalculator = new SimpleInterestCalculator();
     }
     @Test
+    @DisplayName("Testing calculation of Simple interest using small numbers")
     public void testSimpleInterestCalculatorWithSmallNumbers() {
         float actual = simpleInterestCalculator.calculateSimpleInterest(20000, 5, 8);
         float expected = 8000.0f; //through manual Calculation
