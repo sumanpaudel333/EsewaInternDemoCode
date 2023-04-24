@@ -23,25 +23,28 @@ public class ProductServiceController {
         loadWallet.setProductName("Load Wallet");
         productMap.put("Load Wallet", loadWallet);
     }
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+
+    @PostMapping(value = "/product")
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         productMap.put(product.getId(), product);
         return new ResponseEntity<>("Product added Successfully", HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/product")
+    @GetMapping(value = "/product")
     public ResponseEntity<Object> showProduct() {
         return new ResponseEntity<>(productMap.values(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/product/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable("id") String id) {
         productMap.remove(id);
-        if (productMap.get(id)==null) {
-            return new ResponseEntity<>("Product Deleted Successfully "+ productMap, HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>("Could not Delete Product",HttpStatus.OK);
-        }
-        }
+            return new ResponseEntity<>("Product Deleted Successfully " , HttpStatus.OK);
+    }
+    @PutMapping(value ="/product/{id}")
+    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
+        productMap.remove(id);
+        product.setId(id);
+        productMap.put(id,product);
+        return new ResponseEntity<>("Product Updated Successfully",HttpStatus.OK);
+    }
 }
