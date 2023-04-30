@@ -1,6 +1,6 @@
 package com.example.springbootjpademo.service;
 
-import com.example.springbootjpademo.dao.UserRepository;
+import com.example.springbootjpademo.repository.UserRepository;
 import com.example.springbootjpademo.entity.User;
 import com.example.springbootjpademo.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,14 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
-
     @Override
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
-
     @Override
     public Optional<User> getUserById(int id) {
         return userRepository.findById(id);
     }
-
     @Override
     public User updateUserById(int id, User user) {
         User user1 = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
@@ -47,12 +44,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user1);
         return user;
     }
-
     @Override
     public List<User> findUserByName(String name) {
         return userRepository.getUserByName(name);
     }
-
     @Override
     public List<User> findUserByAddress(String address) {
         return userRepository.getUserByAddress(address);

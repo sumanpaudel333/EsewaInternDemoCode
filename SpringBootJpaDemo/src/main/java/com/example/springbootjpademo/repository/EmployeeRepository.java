@@ -1,4 +1,4 @@
-package com.example.springbootjpademo.dao;
+package com.example.springbootjpademo.repository;
 
 import com.example.springbootjpademo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package com.example.springbootjpademo.service;
 
-import com.example.springbootjpademo.dao.EmployeeRepository;
+import com.example.springbootjpademo.repository.EmployeeRepository;
 import com.example.springbootjpademo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
