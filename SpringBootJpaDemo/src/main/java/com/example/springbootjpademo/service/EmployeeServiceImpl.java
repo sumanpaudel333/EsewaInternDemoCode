@@ -3,6 +3,9 @@ package com.example.springbootjpademo.service;
 import com.example.springbootjpademo.repository.EmployeeRepository;
 import com.example.springbootjpademo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,15 +13,17 @@ import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    @Autowired
     private final EmployeeRepository employeeRepository;
 
-    @Autowired
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
     @Override
+    @Cacheable(value = "employee")
     public List<Employee> getAllEmployee() {
+        System.out.println("getAllEmployee() from db");
         return employeeRepository.findAll();
     }
 
@@ -34,12 +39,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @CacheEvict(cacheNames = "deleteEmployeeById",key = "#id")
     public String deleteEmployeeById(int id) {
         employeeRepository.deleteById(id);
         return "User Deleted Successfully";
     }
 
     @Override
+    @CachePut(cacheNames = "updateEmployeeById",key = "#id")
     public String updateEmployeeById(int id, Employee employee) {
         Employee employee1 = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not found employee"));
         employee1.setEmp_name(employee.getEmp_name());

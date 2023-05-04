@@ -1,4 +1,4 @@
-package com.example.multipledbdemo.mysql.config;
+package com.example.multipledatabaseconnectiontask.configdb.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,17 +23,16 @@ import java.util.Objects;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryBean",
-        basePackages = {"com.example.multipledbdemo.mysql.repo"},
-        transactionManagerRef = "transactionManager")
-public class MySqlDbConfig {
+        basePackages = {"com.example.multipledatabaseconnectiontask.configdb.repo"},
+        transactionManagerRef = "transactionManager"
+)
+public class ProductConfig {
     @Autowired
     private Environment environment;
-
     @Bean
     @Primary
-    public DataSource dataSource() {
-        //datasource
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    public DataSource dataSource(){
+        DriverManagerDataSource dataSource=new DriverManagerDataSource();
         dataSource.setUrl(environment.getProperty("spring.datasource.url"));
         dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("spring.datasource.driver-class-name")));
         dataSource.setUsername(environment.getProperty("spring.datasource.username"));
@@ -42,24 +41,24 @@ public class MySqlDbConfig {
     }
     @Bean(name = "entityManagerFactoryBean")
     @Primary
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
-        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean= new LocalContainerEntityManagerFactoryBean();
-        localContainerEntityManagerFactoryBean.setDataSource(dataSource());
-        JpaVendorAdapter jpaVendorAdapter=new HibernateJpaVendorAdapter();
-        localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        Map<String,String> props=new HashMap<>();
-        props.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
-        props.put("hibernate.show_sql","true");
-        props.put("hibernate.hbm2ddl.auto","update");
-        localContainerEntityManagerFactoryBean.setJpaPropertyMap(props);
-        localContainerEntityManagerFactoryBean.setPackagesToScan("com.example.multipledbdemo.mysql.entities");
-        return localContainerEntityManagerFactoryBean;
+    public LocalContainerEntityManagerFactoryBean localEntityManagerFactoryBean(){
+        LocalContainerEntityManagerFactoryBean localEntityManagerFactoryBean=new LocalContainerEntityManagerFactoryBean();
+        localEntityManagerFactoryBean.setDataSource(dataSource());
+        JpaVendorAdapter adapter=new HibernateJpaVendorAdapter();
+        localEntityManagerFactoryBean.setJpaVendorAdapter(adapter);
+        Map<String,String> map=new HashMap<>();
+        map.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
+        map.put("hibernate.showSql","true");
+        map.put("hibernate.hbm2ddl.auto","create-drop");
+        localEntityManagerFactoryBean.setJpaPropertyMap(map);
+        localEntityManagerFactoryBean.setPackagesToScan("com.example.multipledatabaseconnectiontask.configdb.model");
+        return localEntityManagerFactoryBean;
     }
-    @Primary
     @Bean(name = "transactionManager")
-    public PlatformTransactionManager platformTransactionManager(){
-        JpaTransactionManager jpaTransactionManager=new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
-        return jpaTransactionManager;
+    @Primary
+    public PlatformTransactionManager transactionManager(){
+        JpaTransactionManager transactionManager=new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(localEntityManagerFactoryBean().getObject());
+        return transactionManager;
     }
 }

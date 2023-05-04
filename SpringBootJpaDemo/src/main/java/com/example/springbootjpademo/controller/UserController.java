@@ -3,6 +3,7 @@ package com.example.springbootjpademo.controller;
 import com.example.springbootjpademo.entity.User;
 import com.example.springbootjpademo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class UserController {
 
     // displaying all users
     @GetMapping("/")
+    @Cacheable(value = "userinfo")
     public ResponseEntity<List<User>> getUser() {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }

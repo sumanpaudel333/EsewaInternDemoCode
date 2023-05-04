@@ -4,6 +4,7 @@ import com.example.springbootjpademo.repository.UserRepository;
 import com.example.springbootjpademo.entity.User;
 import com.example.springbootjpademo.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "user")
     public List<User> getAllUser() {
+        System.out.println("getAllUser() from db");
         return userRepository.findAll();
     }
     @Override
