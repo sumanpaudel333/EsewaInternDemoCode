@@ -33,20 +33,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @CacheEvict(value = "employee",allEntries = true)
     public String addEmployee(Employee employee) {
         employeeRepository.save(employee);
         return "User added Successfully";
     }
 
     @Override
-    @CacheEvict(cacheNames = "deleteEmployeeById",key = "#id")
+    @CacheEvict(value = "employee",allEntries = true)
     public String deleteEmployeeById(int id) {
         employeeRepository.deleteById(id);
         return "User Deleted Successfully";
     }
-
     @Override
-    @CachePut(cacheNames = "updateEmployeeById",key = "#id")
+    @CachePut(value = "employee")
     public String updateEmployeeById(int id, Employee employee) {
         Employee employee1 = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not found employee"));
         employee1.setEmp_name(employee.getEmp_name());
