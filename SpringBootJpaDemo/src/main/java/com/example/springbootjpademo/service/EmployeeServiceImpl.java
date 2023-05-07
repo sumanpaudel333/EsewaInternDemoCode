@@ -26,27 +26,28 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("getAllEmployee() from db");
         return employeeRepository.findAll();
     }
-
     @Override
+    @Cacheable(value = "employee",key = "#id")
     public Optional<Employee> getEmployeeById(int id) {
+        System.out.println("getting employee from db");
         return employeeRepository.findById(id);
     }
 
     @Override
-    @CacheEvict(value = "employee",allEntries = true)
+    @CacheEvict(value = "employee",allEntries = true,key = "#employee")
     public String addEmployee(Employee employee) {
         employeeRepository.save(employee);
         return "User added Successfully";
     }
 
     @Override
-    @CacheEvict(value = "employee",allEntries = true)
+    @CacheEvict(value = "employee",allEntries = true,key = "#id")
     public String deleteEmployeeById(int id) {
         employeeRepository.deleteById(id);
         return "User Deleted Successfully";
     }
     @Override
-    @CachePut(value = "employee")
+    @CachePut(value = "employee",key = "#id")
     public String updateEmployeeById(int id, Employee employee) {
         Employee employee1 = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not found employee"));
         employee1.setEmp_name(employee.getEmp_name());

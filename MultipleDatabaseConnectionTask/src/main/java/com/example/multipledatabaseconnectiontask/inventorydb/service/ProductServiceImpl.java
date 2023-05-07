@@ -2,6 +2,7 @@ package com.example.multipledatabaseconnectiontask.inventorydb.service;
 
 import com.example.multipledatabaseconnectiontask.configdb.model.FileDetails;
 import com.example.multipledatabaseconnectiontask.configdb.repo.FileDetailsRepository;
+import com.example.multipledatabaseconnectiontask.inventorydb.dto.ProductDto;
 import com.example.multipledatabaseconnectiontask.inventorydb.model.Product;
 import com.example.multipledatabaseconnectiontask.inventorydb.repo.ProductRepository;
 import com.example.multipledatabaseconnectiontask.inventorydb.statusenum.ProductStatusEnum;
@@ -85,5 +86,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void saveAllProduct(List<Product> product) {
         productRepository.saveAll(product);
+    }
+
+    @Override
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
     }
 }

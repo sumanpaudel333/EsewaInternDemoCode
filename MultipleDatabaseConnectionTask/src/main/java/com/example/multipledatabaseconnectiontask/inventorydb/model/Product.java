@@ -1,5 +1,6 @@
 package com.example.multipledatabaseconnectiontask.inventorydb.model;
 
+import com.example.multipledatabaseconnectiontask.inventorydb.encdec.AttributeEncryptor;
 import com.example.multipledatabaseconnectiontask.inventorydb.statusenum.ProductStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,6 +20,7 @@ public class Product {
     @Column(name = "product_name")
     private String name;
     @Column(name = "product_code")
+    @Convert(converter = AttributeEncryptor.class)
     private String code;
     @Enumerated(EnumType.STRING)
     private ProductStatusEnum status;
