@@ -6,7 +6,6 @@ import com.example.multipledatabaseconnectiontask.inventorydb.dto.ProductDto;
 import com.example.multipledatabaseconnectiontask.inventorydb.model.Product;
 import com.example.multipledatabaseconnectiontask.inventorydb.repo.ProductRepository;
 import com.example.multipledatabaseconnectiontask.inventorydb.statusenum.ProductStatusEnum;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -17,10 +16,10 @@ import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private FileDetailsRepository fileDetailsRepository;
+
+    private final ProductRepository productRepository;
+
+    private final FileDetailsRepository fileDetailsRepository;
 
     public ProductServiceImpl(ProductRepository productRepository, FileDetailsRepository fileDetailsRepository) {
         this.productRepository = productRepository;
@@ -89,7 +88,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProduct() {
-        return productRepository.findAll();
+    public List<ProductDto> getAllProduct() {
+        List<Product> products = productRepository.findAll();
+        ProductDto productDto;
+        List<ProductDto> dtoList = new ArrayList<>();
+        for (Product product : products) {
+            productDto = ProductDto.builder().
+                    name(product.getName())
+                    .price(product.getPrice())
+                    .code(product.getCode())
+                    .quantity(product.getQuantity())
+                    .build();
+            dtoList.add(productDto);
+        }
+        return dtoList;
     }
 }

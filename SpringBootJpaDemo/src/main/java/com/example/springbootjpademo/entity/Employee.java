@@ -20,6 +20,7 @@ public class Employee implements Serializable {
     @Column(name = "emp_name")
     private String emp_name;
 
-    @Column(name = "emp_address")
-    private String emp_address;
+    @JoinColumn(name = "emp_address")
+    @OneToOne
+    private Address emp_address;
 }

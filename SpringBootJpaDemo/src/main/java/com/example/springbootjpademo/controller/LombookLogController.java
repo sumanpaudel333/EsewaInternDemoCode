@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class LombookLoginController {
+public class LombookLogController {
     @RequestMapping("/lombook")
     public String index(){
         log.info("this is logger");

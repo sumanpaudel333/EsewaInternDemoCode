@@ -9,5 +9,5 @@ public interface ProductService {
     List<Product> convertCsvFilePathDataIntoProduct(String filepath);
     List<Product> processProduct(List<Product> products,String filepath);
     void saveAllProduct(List<Product> product);
-    List<Product> getAllProduct();
+    List<ProductDto> getAllProduct();
 }

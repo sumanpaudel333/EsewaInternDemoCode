@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.List;
 
 
@@ -49,14 +48,14 @@ public class FileServiceImpl implements FileService {
 
             List<Product> products = productService.convertCsvFilePathDataIntoProduct(updateFileDetails.getFilepath());
 
-            List<Product> products1=productService.processProduct(products, updateFileDetails.getFilepath());
+            List<Product> products1 = productService.processProduct(products, updateFileDetails.getFilepath());
             productService.saveAllProduct(products1);
         }
-            List<FileDetails> fileDetails1 = fileDetailsRepository.findByStatus(FileStatusEnum.PROCESSING);
-            for (FileDetails fileDetails2:fileDetails1){
-                fileDetails2.setStatus(FileStatusEnum.COMPLETE);
-                fileDetailsRepository.save(fileDetails2);
-            }
+        List<FileDetails> fileDetails1 = fileDetailsRepository.findByStatus(FileStatusEnum.PROCESSING);
+        for (FileDetails fileDetails2 : fileDetails1) {
+            fileDetails2.setStatus(FileStatusEnum.COMPLETE);
+            fileDetailsRepository.save(fileDetails2);
         }
     }
+}
 

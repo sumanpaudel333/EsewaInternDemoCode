@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
         super();
         this.userRepository = userRepository;
     }
-
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
