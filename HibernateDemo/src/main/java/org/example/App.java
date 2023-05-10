@@ -32,6 +32,7 @@ public class App
         address.setImage(img);
         Session session=sessionFactory.openSession();
         Transaction transaction=session.beginTransaction();
+        session.
         session.save(student);
         session.save(address);
         transaction.commit();

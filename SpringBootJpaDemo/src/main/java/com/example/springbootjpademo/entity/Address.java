@@ -1,21 +1,26 @@
 package com.example.springbootjpademo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "address")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Address {
     @Id
-    private String add_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int add_id;
     private String city;
     private String street;
-    @OneToOne
-    private Employee employee;
+    /*@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "emp_id")
+    private Employee employee;*/
 }

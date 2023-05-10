@@ -1,30 +1,46 @@
 package com.example.springbootjpademo.service;
 
+import com.example.springbootjpademo.dto.AddressDto;
+import com.example.springbootjpademo.dto.EmployeeDto;
+import com.example.springbootjpademo.entity.Address;
+import com.example.springbootjpademo.repository.AddressRepository;
 import com.example.springbootjpademo.repository.EmployeeRepository;
 import com.example.springbootjpademo.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @Autowired
-    private final EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    private final EmployeeRepository employeeRepository;
+    private final AddressRepository addressRepository;
+
+
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, AddressRepository addressRepository) {
         this.employeeRepository = employeeRepository;
+        this.addressRepository = addressRepository;
     }
 
     @Override
     @Cacheable(value = "employee")
-    public List<Employee> getAllEmployee() {
+    public EmployeeDto getAllEmployee() {
+        EmployeeDto employeeDto=new EmployeeDto();
+        AddressDto addressDto=new AddressDto();
         System.out.println("getAllEmployee() from db");
-        return employeeRepository.findAll();
+        List<Employee> employees= employeeRepository.findAll();
+        for (Employee employee:employees){
+            addressDto.setCity(employee.getEmp_address().getCity());
+            addressDto.setStreet(employee.getEmp_address().getStreet());
+            employeeDto.setName(employee.getEmp_name());
+            employeeDto.setAddress(addressDto);
+        }
+        return employeeDto;
     }
     @Override
     @Cacheable(value = "employee",key = "#id")
@@ -37,6 +53,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @CacheEvict(value = "employee",allEntries = true,key = "#employee")
     public String addEmployee(Employee employee) {
         employeeRepository.save(employee);
+        return "User added Successfully";
+    }
+    @Override
+    @CacheEvict(value = "employee",allEntries = true,key = "#employee")
+    public String addAddress(Address address) {
+        addressRepository.save(address);
         return "User added Successfully";
     }
 

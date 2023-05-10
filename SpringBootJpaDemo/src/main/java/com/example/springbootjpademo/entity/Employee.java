@@ -11,16 +11,16 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee implements Serializable {
+public class Employee{
     @Id
     @Column(name = "emp_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int emp_id;
 
     @Column(name = "emp_name")
     private String emp_name;
 
-    @JoinColumn(name = "emp_address")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "add_id")
     private Address emp_address;
 }
