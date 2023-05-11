@@ -1,17 +1,17 @@
 package com.example.springbootjpademo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee{
+@Builder
+public class Employee {
     @Id
     @Column(name = "emp_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +23,8 @@ public class Employee{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "add_id")
     private Address emp_address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emp_id")
+    private List<Awards> awards;
 }

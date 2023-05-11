@@ -7,18 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "address")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Address {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Awards {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int add_id;
-    private String city;
-    private String street;
-    /*@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "emp_id")
-    private Employee employee;*/
+    private int award_id;
+    @Column(name = "award_name")
+    private String awardName;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Employee employee;
 }
