@@ -7,15 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeRequestDto {
+public class EmployeeRequestDto implements Serializable {
     private String name;
     private Address address;
     private List<Awards> awards;
-
 }

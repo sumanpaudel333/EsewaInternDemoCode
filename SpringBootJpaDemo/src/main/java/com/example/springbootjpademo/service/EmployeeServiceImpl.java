@@ -11,6 +11,7 @@ import com.example.springbootjpademo.repository.AddressRepository;
 import com.example.springbootjpademo.repository.AwardRepository;
 import com.example.springbootjpademo.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -40,24 +42,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeResponseDto employeeDto = new EmployeeResponseDto();
         AddressDto addressDto = new AddressDto();
         AwardDto awardDto = new AwardDto();
-        System.out.println("getAllEmployee() from db");
+        log.info("getAllEmployee() from db");
         List<Employee> employees = employeeRepository.findAll();
         for (Employee employee : employees) {
             addressDto.setCity(employee.getEmp_address().getCity());
             addressDto.setStreet(employee.getEmp_address().getStreet());
-            awardDto.setAward_name(employees.get(employee.getEmp_id()).getAwards());
+            awardDto.setAward_name(employee.getAwards());
             employeeDto.setName(employee.getEmp_name());
             employeeDto.setAddress(addressDto);
+            employeeDto.setAwardsList(awardDto);
         }
-        awardDto.setAward_name(awardDto.getAward_name());
-        employeeDto.setAwardsList(awardDto);
+        log.info("Getting All Employees");
         return employeeDto;
     }
-
     @Override
     @Cacheable(value = "employee", key = "#id")
     public Optional<Employee> getEmployeeById(int id) {
-        System.out.println("getting employee from db");
+        log.info("getting employee from db");
         return employeeRepository.findById(id);
     }
 
@@ -78,6 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeResponseDto.setAddress(addressDto);
         employeeResponseDto.setName(employee.getName());
         employeeResponseDto.setAwardsList(awardDto);
+        log.info("Employee Added");
         return employeeResponseDto;
     }
 
@@ -85,6 +87,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @CacheEvict(value = "employee", allEntries = true)
     public String addAddress(Address address) {
         addressRepository.save(address);
+        log.info("Address added Successfully");
         return "Address added Successfully";
     }
 
@@ -92,6 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @CacheEvict(value = "employee", allEntries = true)
     public String addAwards(List<Awards> awards) {
         awardRepository.saveAll(awards);
+        log.info("Awards added Successfully");
         return "Awards added Successfully";
     }
 
@@ -99,6 +103,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @CacheEvict(value = "employee", allEntries = true, key = "#id")
     public String deleteEmployeeById(int id) {
         employeeRepository.deleteById(id);
+        log.info("User Deleted Successfully");
         return "User Deleted Successfully";
     }
 
@@ -109,6 +114,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee1.setEmp_name(employee.getEmp_name());
         employee1.setEmp_address(employee.getEmp_address());
         employeeRepository.save(employee1);
+        log.info("User Update successfully");
         return "User Update successfully";
     }
 }
