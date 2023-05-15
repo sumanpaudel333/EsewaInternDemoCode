@@ -2,6 +2,7 @@ package com.rms.rentalmanagementsystem.Property.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.rms.rentalmanagementsystem.Landlord.entity.Landlord;
 import com.rms.rentalmanagementsystem.Property.enums.PropertyStatusEnum;
 import com.rms.rentalmanagementsystem.Property.enums.PropertyTypeEnum;
@@ -31,10 +32,7 @@ public class Property {
     @Enumerated(EnumType.STRING)
     @Column(name = "property_status")
     private PropertyStatusEnum propertyStatus;
-    /*@OneToMany
-    private List<Payment> payment;*/
     @ManyToOne
     @JoinColumn(name = "landlord_id")
-    @JsonIgnore
     private Landlord landlord;
 }
