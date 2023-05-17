@@ -17,7 +17,7 @@ import java.util.List;
 public class Lease {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long leaseId;
+    private int leaseId;
     @Temporal(TemporalType.DATE)
     @Column(name = "start_date")
     private Date startDate;

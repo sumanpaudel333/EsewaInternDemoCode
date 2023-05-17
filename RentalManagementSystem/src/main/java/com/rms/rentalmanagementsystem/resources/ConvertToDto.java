@@ -3,8 +3,10 @@ package com.rms.rentalmanagementsystem.resources;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rms.rentalmanagementsystem.dto.LandlordRequestDto;
 import com.rms.rentalmanagementsystem.dto.LandlordResponseDto;
+import com.rms.rentalmanagementsystem.dto.TenantRequestDto;
 import com.rms.rentalmanagementsystem.entity.Landlord;
 import com.rms.rentalmanagementsystem.entity.Property;
+import com.rms.rentalmanagementsystem.entity.Tenant;
 import com.rms.rentalmanagementsystem.enums.PropertyStatusEnum;
 import com.rms.rentalmanagementsystem.enums.UserStatusEnum;
 
@@ -40,5 +42,11 @@ public class ConvertToDto {
         requestDto.setName(landlord.getName());
         requestDto.setAccountNumber(landlord.getAccountNumber());
         return requestDto;
+    }
+    public Tenant tenantRequestDtoToTenant(TenantRequestDto tenantRequestDto){
+        Tenant tenant=new Tenant();
+        tenant.setTenantName(tenantRequestDto.getTenantName());
+        tenant.setContact(tenantRequestDto.getContact());
+        return tenant;
     }
 }
