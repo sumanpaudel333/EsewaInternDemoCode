@@ -22,13 +22,13 @@ public class UserController {
     }
 
     // create employee rest api
-    @PostMapping(value = "adduser")
+    @PostMapping(value = "/adduser")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
     // displaying all users
-    @GetMapping("/")
+    @GetMapping("/getalluser")
     @Cacheable(value = "userinfo")
     public ResponseEntity<List<User>> getUser() {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);

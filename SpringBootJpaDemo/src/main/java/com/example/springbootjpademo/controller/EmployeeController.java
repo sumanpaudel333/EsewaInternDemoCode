@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -18,28 +17,28 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/api/employee/getall")
     public ResponseEntity<EmployeeResponseDto> getAllEmployee() {
         return new ResponseEntity<>(employeeService.getAllEmployee(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/employee/{id}")
     public Employee getEmployeeById(@PathVariable int id) {
         return employeeService.getEmployeeById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/api/employee/add")
     public EmployeeResponseDto addEmployee(@RequestBody EmployeeRequestDto employee) {
         return employeeService.addEmployee(employee);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/api/employee/delete/{id}")
     public EmployeeResponseDto deleteEmployee(@PathVariable int id) {
         employeeService.deleteEmployeeById(id);
         return employeeService.getAllEmployee();
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/api/employee/update/{id}")
     public String updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
         employeeService.updateEmployeeById(id, employee);
         return employee + " Update Successfully";
