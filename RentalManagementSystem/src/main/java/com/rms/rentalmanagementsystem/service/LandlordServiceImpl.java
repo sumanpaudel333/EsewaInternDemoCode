@@ -78,24 +78,21 @@ public class LandlordServiceImpl implements LandlordService {
     }
 
     public void updateLandlordById(int id, LandlordRequestDto landlordRequestDto) {
-        Landlord landlord = new Landlord();
+        Landlord landlord = landlordRepo.findById(id).orElseThrow();
         Contact contact = new Contact();
-        landlord.setId(id);
         landlord.setName(landlordRequestDto.getName());
-        contact.setId(landlordRequestDto.getContact().getId());
+        contact.setId(landlord.getContact().getId());
         contact.setAddress(landlordRequestDto.getContact().getAddress());
         contact.setEmail(landlordRequestDto.getContact().getEmail());
         contact.setPhone(landlordRequestDto.getContact().getPhone());
         landlord.setContact(contact);
         landlord.setAccountNumber(landlordRequestDto.getAccountNumber());
         landlordRepo.save(landlord);
-        contactRepo.deleteById(id);
     }
 
     public void deleteLandlordById(int id) {
         Landlord landlord = landlordRepo.findById(id).orElseThrow();
         landlord.setUserStatus(UserStatusEnum.Deleted);
-        contactRepo.save(landlord.getContact());
         landlordRepo.save(landlord);
     }
 }
