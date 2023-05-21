@@ -30,8 +30,8 @@ public class UserController {
     // displaying all users
     @GetMapping("/getalluser")
     @Cacheable(value = "userinfo")
-    public ResponseEntity<List<User>> getUser() {
-        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+    public List<User> getUser() {
+        return userService.getAllUser();
     }
 
     // displaying users by given id

@@ -36,17 +36,18 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf()
-                .disable()
+        httpSecurity
                 .authorizeHttpRequests()
                 .requestMatchers("/api/user/**")
                 .hasRole("USER")
-                .requestMatchers("/api/employee/getall")
+                .requestMatchers("/api/employee/**","/api/user/**")
                 .hasRole("EMPLOYEE")
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .httpBasic();
         return httpSecurity.build();
     }
 }
