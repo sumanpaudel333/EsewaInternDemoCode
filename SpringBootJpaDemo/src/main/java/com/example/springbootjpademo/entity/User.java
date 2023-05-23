@@ -20,6 +20,9 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "username")
+    private String userName;
+
     @Column(nullable = false)
     private String address;
 }

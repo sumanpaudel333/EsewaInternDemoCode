@@ -48,9 +48,9 @@ public class UserServiceImplTest {
     public void testGetUserById_TestingFindUserByName_True() {
         String name = "Suman";
         //arrange
-        User user1 = new User(2, "saurav", "bhaktapur");
-        User user2 = new User(3, "shreejal", "Lalitpur");
-        User user3 = new User(4, "santosh", "bhaktapur");
+        User user1 = new User(2, "saurav","saurav123", "bhaktapur");
+        User user2 = new User(3, "shreejal","shreejal123", "Lalitpur");
+        User user3 = new User(4, "santosh","santosh123", "bhaktapur");
 
         userList.add(user);
         userList.add(user1);
@@ -74,10 +74,10 @@ public class UserServiceImplTest {
     @Test
     public void testUpdateUserById_TestingUpdateUserById_True(){
         // arrange
-        User userToUpdate = new User(5, "Suman", "Kathmandu");
+        User userToUpdate = new User(5, "Suman","suman123", "Kathmandu");
         when(userRepository.findById(5)).thenReturn(Optional.of(userToUpdate));
 
-        User updatedUser = new User(5, "Suman Paudel", "Lalitpur");
+        User updatedUser = new User(5, "Suman Paudel", "suman333","Lalitpur");
 
         // act
         User result = userService.updateUserById(5, updatedUser);
@@ -92,9 +92,9 @@ public class UserServiceImplTest {
     public void testGetUserById_TestingFindUserByAddress_True() {
         String address = "bhaktapur";
         //arrange
-        User user1 = new User(2, "saurav", "bhaktapur");
-        User user2 = new User(3, "shreejal", "Lalitpur");
-        User user3 = new User(4, "santosh", "bhaktapur");
+        User user1 = new User(2, "saurav", "saurav123","bhaktapur");
+        User user2 = new User(3, "shreejal","shree123", "Lalitpur");
+        User user3 = new User(4, "santosh","santosh123", "bhaktapur");
 
         userList.add(user);
         userList.add(user1);

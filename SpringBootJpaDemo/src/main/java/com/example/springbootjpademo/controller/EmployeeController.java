@@ -18,8 +18,8 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/api/employee/getall")
-    public ResponseEntity<EmployeeResponseDto> getAllEmployee() {
-        return new ResponseEntity<>(employeeService.getAllEmployee(), HttpStatus.OK);
+    public EmployeeResponseDto getAllEmployee() {
+        return employeeService.getAllEmployee();
     }
 
     @GetMapping("/api/employee/{id}")
