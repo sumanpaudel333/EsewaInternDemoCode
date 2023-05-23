@@ -4,7 +4,6 @@ import com.project.springsecuritydemo.config.SecurityConfiguration;
 import com.project.springsecuritydemo.entity.User;
 import com.project.springsecuritydemo.repo.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
