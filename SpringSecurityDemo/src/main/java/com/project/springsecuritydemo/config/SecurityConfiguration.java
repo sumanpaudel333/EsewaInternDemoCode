@@ -3,26 +3,24 @@ package com.project.springsecuritydemo.config;
 import com.project.springsecuritydemo.service.JpaUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
 @Component
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfiguration {
     private final JpaUserDetailService jpaUserDetailService;
+    private final JwtAuthFilter jwtAuthFilter;
+    private final ApplicationConfig applicationConfig;
 
-    public SecurityConfiguration(JpaUserDetailService jpaUserDetailService) {
+    public SecurityConfiguration(JpaUserDetailService jpaUserDetailService, JwtAuthFilter jwtAuthFilter, ApplicationConfig applicationConfig) {
         this.jpaUserDetailService = jpaUserDetailService;
-    }
-
-    @Bean
-    public static BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.applicationConfig = applicationConfig;
     }
 
     @Bean
@@ -32,9 +30,15 @@ public class SecurityConfiguration {
                 .disable()
                 .userDetailsService(jpaUserDetailService)
                 .authorizeHttpRequests()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/greetuser","/authenticate","/adduser")
+                .permitAll()
+                .requestMatchers("/getuser").hasRole("ADMIN")
                 .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .authenticationProvider(applicationConfig.authenticationProvider())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin();
         return httpSecurity.build();

@@ -1,12 +1,9 @@
 package com.example.springbootjpademo.config;
 
-import com.example.springbootjpademo.entity.User;
 import com.example.springbootjpademo.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.List;
 
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserService userService;
@@ -17,7 +14,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-         userService.findUserByName(username);
+        userService.findUserByName(username);
         return null;
     }
 }

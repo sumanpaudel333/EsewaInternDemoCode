@@ -1,6 +1,5 @@
 package com.project.springsecuritydemo.service;
 
-import com.project.springsecuritydemo.entity.User;
 import com.project.springsecuritydemo.repo.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +16,6 @@ public class JpaUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUserName(username).orElseThrow();
+        return userRepository.findByUserName(username).orElseThrow(()->new UsernameNotFoundException("Username not found")) ;
     }
 }
