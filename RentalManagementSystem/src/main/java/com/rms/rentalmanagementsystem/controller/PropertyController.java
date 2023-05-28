@@ -4,11 +4,13 @@ import com.rms.rentalmanagementsystem.dto.PropertyDto;
 import com.rms.rentalmanagementsystem.entity.Property;
 import com.rms.rentalmanagementsystem.service.PropertyService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/property")
 public class PropertyController {
     private final PropertyService propertyService;
 

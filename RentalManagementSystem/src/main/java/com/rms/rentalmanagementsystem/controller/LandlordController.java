@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/landlord")
 public class LandlordController {
     private final LandlordService landlordService;
 
@@ -15,7 +16,7 @@ public class LandlordController {
         this.landlordService = landlordService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/addlandlord")
     public String addLandlord(@RequestBody LandlordRequestDto landlordRequestDto) {
          landlordService.addLandlordDto(landlordRequestDto);
          return "User Added Successfully!";
