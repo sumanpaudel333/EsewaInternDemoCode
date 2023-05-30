@@ -21,7 +21,7 @@ public class AddressController {
         AddressResponse address = addressService.getAddressByEmployeeId(employeeId);
         return ResponseEntity.status(HttpStatus.OK).body(address);
     }
-    @GetMapping("/getalladdress")
+    @GetMapping("/address/getalladdress")
     public ResponseEntity<List<AddressResponse>> getAllAddress() {
         List<AddressResponse> address = addressService.getAllAddress();
         return ResponseEntity.status(HttpStatus.OK).body(address);

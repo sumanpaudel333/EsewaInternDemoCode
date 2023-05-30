@@ -19,7 +19,7 @@ public class EmployeeService {
     private final WebClient webClient;
     private final RestTemplate restTemplate;
 //    private final DiscoveryClient client;
-    private final LoadBalancerClient loadBalancerClient;
+//    private final LoadBalancerClient loadBalancerClient;
     public ResponseEmployee getEmployeeById(int id) {
         AddressResponse addressResponse;
         Employee employee = employeeRepository.findById(id).orElseThrow();
@@ -41,9 +41,12 @@ public class EmployeeService {
        /* List<ServiceInstance> serviceInstances=client.getInstances("Address-Service");
        ServiceInstance serviceInstance= serviceInstances.get(0);
        String uri= serviceInstance.getUri().toString();*/
-       ServiceInstance serviceInstance=loadBalancerClient.choose("Address-Service");
+        //load balancing through service instance and invoking loadbalancer
+       /*ServiceInstance serviceInstance=loadBalancerClient.choose("Address-Service");
        String uri=serviceInstance.getUri().toString();
-        System.out.println(">>>>>>>>> "+uri);
-        return restTemplate.getForObject(uri+"/address/{id}",AddressResponse.class,id);
+       String contextRoot=serviceInstance.getMetadata().get("configPath");
+        System.out.println(">>>>>>>>> "+uri);*/
+        System.out.println("Balancing load through Rest Template");
+        return restTemplate.getForObject("http://Address-service/address/{id}",AddressResponse.class,id);
     }
 }
