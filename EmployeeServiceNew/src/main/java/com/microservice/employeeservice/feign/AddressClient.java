@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "address",url = "http://localhost:8081/")
+@FeignClient(name = "Address-Service",path = "/address/")
 public interface AddressClient {
-    @GetMapping("/address/{id}")
+    @GetMapping("{id}")
     AddressResponse getAddressByEmployeeId(@PathVariable("id") int id);
-    @GetMapping("/getalladdress")
+    @GetMapping("getalladdress")
     ResponseEntity<List<AddressResponse>> getAllAddress();
 }
