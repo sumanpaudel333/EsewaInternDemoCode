@@ -23,4 +23,5 @@ public class Address {
     private String city;
     @Column(name = "state")
     private String state;
+    private int employee_id;
 }
