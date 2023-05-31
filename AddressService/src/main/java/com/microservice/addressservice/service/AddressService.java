@@ -35,4 +35,9 @@ public class AddressService {
         System.out.println("Getting Address");
         return Arrays.asList(modelMapper.map(address,AddressResponse[].class));
     }
+    public String addAddress(AddressResponse addressResponse){
+        Address address=modelMapper.map(addressResponse,Address.class);
+        addressRepository.save(address);
+        return "Address Added Successfully";
+    }
 }
