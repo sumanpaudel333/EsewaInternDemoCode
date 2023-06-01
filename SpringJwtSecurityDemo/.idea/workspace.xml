@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a37cbbe-cbdc-4644-bc8e-157c75f4ded2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/controller/HotelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/entity/Hotel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/repo/HotelRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/service/HotelService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/HotelService/src/main/java/com/hotelservice/hotelservice/service/HotelServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/entity/Rating.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/payload/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/repo/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RatingMicroService/UserService/src/main/java/com/userservice/userservice/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDemo" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringDemo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SpringJwtSecurityDemo" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SpringJwtSecurityDemo" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SpringJwtSecurityDemo" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SpringJwtSecurityDemo" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="runtimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QGiLEi0CAInRdcmzKimIyUMtir" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "e88ca00c38037ec53a9c859e59774c23",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringJwtSecurityDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="SpringJwtSecurityDemo.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.springjwtsecuritydemo.SpringJwtSecurityDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a37cbbe-cbdc-4644-bc8e-157c75f4ded2" name="Changes" comment="" />
+      <created>1684986263572</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684986263572</updated>
+      <workItem from="1684986264679" duration="6282000" />
+      <workItem from="1685599914011" duration="113000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="application.yml" />
+  </component>
+</project>
