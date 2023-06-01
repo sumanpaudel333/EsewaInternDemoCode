@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservice_demo
+    username: root
+    password: paudel123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: Address-Service
+
+server:
+  port: 0
+eureka:
+  instance:
+    metadata-map:
+      configPath: "/address/"
+      user: suman
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+info:
+  app-name: "Address-Service"
+  version: "1.0.0"
+  description: "Address-Service for Random Employee App"
