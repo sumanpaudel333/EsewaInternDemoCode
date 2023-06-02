@@ -32,10 +32,11 @@ public class HotelServiceImpl implements HotelService{
     public Hotel getHotelById(String hotelId) {
         return hotelRepository.findById(hotelId).orElseThrow(()->new ResourceNotFoundException("Hotel Not Found in List"));
     }
-    public Hotel getRatingByHotelId(String hotelId) {
+    @Override
+    public List<Rating> getRatingByHotelId(String hotelId) {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("User Not Found!"));
         List<Rating> rating = restTemplate.getForObject("http://localhost:8083/api/rating/getratingbyhotel/{hotelId}", List.class, hotelId);
         hotel.setRatings(rating);
-        return hotel;
+        return rating;
     }
 }

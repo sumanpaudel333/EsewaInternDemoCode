@@ -1,8 +1,8 @@
 package com.hotelservice.hotelservice.controller;
 
 import com.hotelservice.hotelservice.entity.Hotel;
+import com.hotelservice.hotelservice.entity.Rating;
 import com.hotelservice.hotelservice.service.HotelService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +30,10 @@ public class HotelController {
     public ResponseEntity<Hotel> getHotelById(@PathVariable String hotelId){
         Hotel hotel=hotelService.getHotelById(hotelId);
         return ResponseEntity.status(HttpStatus.FOUND).body(hotel);
+    }
+    @GetMapping("/getratingbyid/{hotelId}")
+    public ResponseEntity<List<Rating>> getRatingByHotelId(@PathVariable String hotelId){
+        List<Rating> ratings=hotelService.getRatingByHotelId(hotelId);
+        return ResponseEntity.status(HttpStatus.FOUND).body(ratings);
     }
 }
