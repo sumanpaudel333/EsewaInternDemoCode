@@ -1,4 +1,4 @@
-package com.userservice.userservice.entity;
+package com.hotelservice.hotelservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
