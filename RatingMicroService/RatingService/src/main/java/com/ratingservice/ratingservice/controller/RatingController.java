@@ -23,11 +23,11 @@ public class RatingController {
         return ResponseEntity.status(HttpStatus.FOUND).body(ratingService.getAllRatings());
     }
     @GetMapping("/getratingbyuser/{userId}")
-    public ResponseEntity<List<Rating>> listOfRatingByUserId(@PathVariable String userId){
-        return ResponseEntity.status(HttpStatus.FOUND).body(ratingService.getRatingByUserId(userId));
+    public List<Rating> listOfRatingByUserId(@PathVariable String userId){
+        return ratingService.getRatingByUserId(userId);
     }
     @GetMapping("/getratingbyhotel/{hotelId}")
-    public ResponseEntity<List<Rating>> listOfRatingByHotelId(@PathVariable String hotelId){
-        return ResponseEntity.status(HttpStatus.FOUND).body(ratingService.getRatingByHotel(hotelId));
+    public List<Rating> listOfRatingByHotelId(@PathVariable String hotelId){
+        return ratingService.getRatingByHotel(hotelId);
     }
 }

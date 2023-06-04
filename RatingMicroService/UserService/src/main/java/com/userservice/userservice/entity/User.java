@@ -2,6 +2,7 @@ package com.userservice.userservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,10 +19,13 @@ public ResponseEntity<User> addUser(@RequestBody User user){
     User user1=userService.addUser(user);
     return ResponseEntity.status(HttpStatus.CREATED).body(user1);
 }
+@GetMapping("/getuserwithrating/{userId}")
+public User getUserByIdWithRating(@PathVariable String userId){
+    return userService.getUserByIdWithRating(userId);
+}
 @GetMapping("/getuser/{userId}")
-public ResponseEntity<User> getUserById(@PathVariable String userId){
-    User user= userService.getUserById(userId);
-    return ResponseEntity.ok(user);
+public User getUserById(@PathVariable String userId){
+    return userService.getUserById(userId);
 }
 @GetMapping("/getalluser")
     public ResponseEntity<List<User>> getAllUser(){

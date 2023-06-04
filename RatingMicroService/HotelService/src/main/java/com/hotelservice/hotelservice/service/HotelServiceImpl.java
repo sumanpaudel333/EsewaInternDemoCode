@@ -3,6 +3,7 @@ package com.hotelservice.hotelservice.service;
 import com.hotelservice.hotelservice.entity.Hotel;
 import com.hotelservice.hotelservice.entity.Rating;
 import com.hotelservice.hotelservice.exception.ResourceNotFoundException;
+import com.hotelservice.hotelservice.extraservice.RatingService;
 import com.hotelservice.hotelservice.repo.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class HotelServiceImpl implements HotelService{
     private final HotelRepository hotelRepository;
     private final RestTemplate restTemplate;
+    private final RatingService ratingService;
     @Override
     public Hotel addHotel(Hotel hotel) {
         String hotelId= UUID.randomUUID().toString();
@@ -33,10 +35,10 @@ public class HotelServiceImpl implements HotelService{
         return hotelRepository.findById(hotelId).orElseThrow(()->new ResourceNotFoundException("Hotel Not Found in List"));
     }
     @Override
-    public List<Rating> getRatingByHotelId(String hotelId) {
+    public Hotel getRatingByHotelId(String hotelId) {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("User Not Found!"));
-        List<Rating> rating = restTemplate.getForObject("http://localhost:8083/api/rating/getratingbyhotel/{hotelId}", List.class, hotelId);
+        List<Rating> rating = ratingService.listOfRatingByHotelId(hotelId).getBody();
         hotel.setRatings(rating);
-        return rating;
+        return hotel;
     }
 }

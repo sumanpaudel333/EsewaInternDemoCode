@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hotels")
+@RequestMapping("/api/hotels")
 @RequiredArgsConstructor
 public class HotelController {
     private final HotelService hotelService;
@@ -27,13 +27,12 @@ public class HotelController {
         return ResponseEntity.status(HttpStatus.FOUND).body(hotels);
     }
     @GetMapping("/gethotelbyid/{hotelId}")
-    public ResponseEntity<Hotel> getHotelById(@PathVariable String hotelId){
-        Hotel hotel=hotelService.getHotelById(hotelId);
-        return ResponseEntity.status(HttpStatus.FOUND).body(hotel);
+    public Hotel getHotelById(@PathVariable String hotelId){
+        return hotelService.getHotelById(hotelId);
     }
     @GetMapping("/getratingbyid/{hotelId}")
-    public ResponseEntity<List<Rating>> getRatingByHotelId(@PathVariable String hotelId){
-        List<Rating> ratings=hotelService.getRatingByHotelId(hotelId);
-        return ResponseEntity.status(HttpStatus.FOUND).body(ratings);
+    public ResponseEntity<Hotel> getRatingByHotelId(@PathVariable String hotelId){
+        Hotel hotelWithRating=hotelService.getRatingByHotelId(hotelId);
+        return ResponseEntity.status(HttpStatus.FOUND).body(hotelWithRating);
     }
 }
