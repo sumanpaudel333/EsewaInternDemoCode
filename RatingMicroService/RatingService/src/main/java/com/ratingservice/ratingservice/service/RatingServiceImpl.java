@@ -55,21 +55,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getRatingByHotel(String hotelId) {
-        List<Rating> ratings = ratingRepository.findByHotelId(hotelId);
-        List<Rating> ratings1 = new ArrayList<>();
-        for (Rating rating : ratings) {
-            Hotel hotel = hotelService.getHotelById(rating.getHotelId());
-            Rating rating1 = Rating.builder()
-                    .userId(rating.getUserId())
-                    .ratingId(rating.getRatingId())
-                    .rating(rating.getRating())
-                    .feedback(rating.getFeedback())
-                    .hotel(hotel)
-                    .hotelId(hotel.getHotelId())
-                    .build();
-            ratings1.add(rating1);
-        }
-        return ratings1;
+        return ratingRepository.findByHotelId(hotelId);
     }
 
 }
