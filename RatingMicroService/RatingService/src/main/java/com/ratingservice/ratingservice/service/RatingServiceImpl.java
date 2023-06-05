@@ -34,16 +34,18 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getRatingByUserId(String userId) {
-        List<Rating> ratings=ratingRepository.findByUserId(userId);
-        List<Rating> ratings1=new ArrayList<>();
-        for (Rating rating:ratings){
-            User user=userService.getUserById(rating.getUserId());
-            Rating rating1= Rating.builder()
+        List<Rating> ratings = ratingRepository.findByUserId(userId);
+        List<Rating> ratings1 = new ArrayList<>();
+        for (Rating rating : ratings) {
+            User user = userService.getUserById(rating.getUserId());
+            Hotel hotel = hotelService.getHotelById(rating.getHotelId());
+            Rating rating1 = Rating.builder()
                     .userId(rating.getUserId())
                     .ratingId(rating.getRatingId())
                     .rating(rating.getRating())
                     .feedback(rating.getFeedback())
                     .hotelId(rating.getHotelId())
+                    .hotel(hotel)
                     .user(user)
                     .build();
             ratings1.add(rating1);
@@ -53,11 +55,11 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getRatingByHotel(String hotelId) {
-        List<Rating> ratings=ratingRepository.findByHotelId(hotelId);
-        List<Rating> ratings1=new ArrayList<>();
-        for (Rating rating:ratings){
-            Hotel hotel=hotelService.getHotelById(rating.getHotelId());
-            Rating rating1= Rating.builder()
+        List<Rating> ratings = ratingRepository.findByHotelId(hotelId);
+        List<Rating> ratings1 = new ArrayList<>();
+        for (Rating rating : ratings) {
+            Hotel hotel = hotelService.getHotelById(rating.getHotelId());
+            Rating rating1 = Rating.builder()
                     .userId(rating.getUserId())
                     .ratingId(rating.getRatingId())
                     .rating(rating.getRating())
@@ -69,4 +71,5 @@ public class RatingServiceImpl implements RatingService {
         }
         return ratings1;
     }
+
 }

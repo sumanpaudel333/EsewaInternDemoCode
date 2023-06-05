@@ -12,10 +12,23 @@ spring:
     show-sql: true
   jooq:
     sql-dialect: org.hibernate.dialect.MySQLDialect
-#  application:
-#    name: User-Service
+  application:
+    name: User-Service
   config:
     import: optional:configserver:http://localhost:8085
+management:
+  health:
+   circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health
+
 #eureka:
 #  instance:
 #    prefer-ip-address: true
@@ -23,4 +36,22 @@ spring:
 #    service-url:
 #      defaultZone: http://localhost:8761/eureka
 #    register-with-eureka: true
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingHotelBreaker:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5
+        sliding-window-size: 10
+        sliding-window-type: COUNT_BASED
+  retry:
+    instances:
+      ratingBreaker:
+        max-attempts: 3
+        wait-duration: 5s
+
 #    fetch-registry: true
