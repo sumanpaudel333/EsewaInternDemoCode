@@ -33,8 +33,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotel getHotelById(String hotelId) {
-        Hotel hotel= hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel Not Found in List"));
-        List<Rating> ratings=ratingService.listOfRatingByHotelId(hotelId);
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel Not Found in List"));
+        List<Rating> ratings = ratingService.listOfRatingByHotelId(hotelId);
         hotel.setRatings(ratings);
         return hotel;
     }
