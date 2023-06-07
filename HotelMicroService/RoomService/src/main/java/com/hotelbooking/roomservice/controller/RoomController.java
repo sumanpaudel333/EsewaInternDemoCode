@@ -12,12 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class RoomController {
     private final RoomService roomService;
     @PostMapping("/add")
-    public Room addNewRoom(@RequestBody Room room, @RequestPart MultipartFile multipartFile){
+    public Room addNewRoom(@RequestBody Room room, @RequestParam("file") MultipartFile multipartFile){
     return roomService.addNewRoom(room,multipartFile);
     }
-    @PostMapping("/addimage")
-    public String addNewRoom(@RequestPart MultipartFile multipartFile){
-    return roomService.uploadImage(multipartFile);
-    }
-
 }

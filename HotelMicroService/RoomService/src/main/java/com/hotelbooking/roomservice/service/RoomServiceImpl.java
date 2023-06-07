@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.hotelbooking.roomservice.repo.RoomRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService{
@@ -15,14 +20,22 @@ public class RoomServiceImpl implements RoomService{
         room.setRoomImage(multipartFile.getName());
         return roomRepository.save(room);
     }
-    public String uploadImage(MultipartFile multipartFile){
-        Room room=Room.builder()
-                .roomId("klalalla")
-                .roomStatus("Available")
-                .roomName("Deluxe")
-                .price("4000")
-                .roomImage(multipartFile.getOriginalFilename())
-                .build();
+
+    @Override
+    public String uploadImage(String path,MultipartFile multipartFile) throws IOException {
+        String fileName= multipartFile.getOriginalFilename();
+        String filePath=path + File.separator +fileName;
+        File file=new File(path);
+        if (!file.exists()){
+            file.mkdir();
+        }
+        Files.copy(multipartFile.getInputStream(), Paths.get(filePath));
         return "Image Uploaded Successfully";
     }
+
+    @Override
+    public String bookRoom(Room room) {
+        return null;
+    }
+
 }
