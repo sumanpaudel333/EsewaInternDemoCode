@@ -23,13 +23,13 @@ public class BlogPost {
     private String blogTitle;
     @Column(name = "blog_content")
     private String blogContent;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Tags> tag;
     @Column(name = "published_date")
     private Date publishedDate;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Author author;
 }
