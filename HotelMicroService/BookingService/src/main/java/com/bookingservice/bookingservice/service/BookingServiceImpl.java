@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class BookingServiceImpl implements BookingService{
     private final BookingRepository bookingRepository;
     @Override
-    public String bookRoom(Booking booking) {
+    public String bookRoom(String roomId,Booking booking) {
         bookingRepository.save(booking);
         return "Room Booked Successfully!";
     }
