@@ -26,6 +26,6 @@ public class Author {
     private String email;
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author")
     private List<BlogPost> posts;
 }

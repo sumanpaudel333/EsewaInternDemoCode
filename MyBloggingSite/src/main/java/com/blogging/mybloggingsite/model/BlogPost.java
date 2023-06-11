@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CurrentTimestamp;
+import org.hibernate.tuple.GenerationTiming;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +31,8 @@ public class BlogPost {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Tags> tag;
     @Column(name = "published_date")
+    @CurrentTimestamp(timing = GenerationTiming.INSERT)
     private Date publishedDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Author author;
 }
