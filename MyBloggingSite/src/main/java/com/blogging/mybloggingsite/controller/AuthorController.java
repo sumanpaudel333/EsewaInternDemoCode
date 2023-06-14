@@ -17,19 +17,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorController {
     private final AuthorService authorService;
+
     @PostMapping("/register")
     ResponseEntity<AuthorResponseDto> registerAuthor(@RequestBody Author author) throws MessagingException, IOException {
-        AuthorResponseDto author1=authorService.registerAuthor(author);
+        AuthorResponseDto author1 = authorService.registerAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(author1);
     }
+
     @GetMapping("/getallauthor")
-    ResponseEntity<List<Author>> getAllAuthor(){
-        List<Author> authorList=authorService.getAllAuthor();
+    ResponseEntity<List<AuthorResponseDto>> getAllAuthor() {
+        List<AuthorResponseDto> authorList = authorService.getAllAuthor();
         return ResponseEntity.status(HttpStatus.FOUND).body(authorList);
     }
+
     @GetMapping("/getauthorbyid/{authorId}")
-    ResponseEntity<Author> getAuthorById(@PathVariable long authorId){
-        Author author=authorService.getAuthorById(authorId);
+    ResponseEntity<Author> getAuthorById(@PathVariable long authorId) {
+        Author author = authorService.getAuthorById(authorId);
         return ResponseEntity.status(HttpStatus.FOUND).body(author);
     }
 }

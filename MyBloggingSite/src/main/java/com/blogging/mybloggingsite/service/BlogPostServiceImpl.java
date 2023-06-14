@@ -46,21 +46,21 @@ public class BlogPostServiceImpl implements BlogPostService {
     @Override
     public List<BlogResponseDto> getAllBlogpost() {
         List<BlogPost> posts = blogPostRepository.findAll();
-        List<BlogResponseDto> blogResponseDtos = new ArrayList<>();
+        List<BlogResponseDto> blogResponseDto = new ArrayList<>();
         for (BlogPost blogPost : posts) {
-            BlogResponseDto blogResponseDto = modelMapper.map(blogPost, BlogResponseDto.class);
-            blogResponseDtos.add(blogResponseDto);
+            BlogResponseDto blogResponseDto1 = modelMapper.map(blogPost, BlogResponseDto.class);
+            blogResponseDto.add(blogResponseDto1);
         }
-        return blogResponseDtos;
+        return blogResponseDto;
     }
 
     @Override
     public BlogResponseDto editBlogPost(String blogPostId, BlogPostRequestDto blogPost) {
-        BlogPost blogPost1 = blogPostRepository.findById(blogPostId).orElseThrow();
+        blogPostRepository.findById(blogPostId).orElseThrow();
         BlogPost blogPost2 = modelMapper.map(blogPost, BlogPost.class);
         Category category = categoryRepository.findCategoryByCategoryName(blogPost.getCategoryName());
         Author author = authorRepository.findByUserName(blogPost.getAuthorUserName()).orElseThrow();
-        if (category==null) {
+        if (category == null) {
             throw new RuntimeException("Category does not exist! Please review your category");
         }
         blogPost2.setCategory(category);

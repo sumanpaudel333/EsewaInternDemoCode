@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface AuthorService {
     AuthorResponseDto registerAuthor(Author author) throws MessagingException, IOException;
-    List<Author> getAllAuthor();
+    List<AuthorResponseDto> getAllAuthor();
     Author getAuthorById(Long authorId);
 }

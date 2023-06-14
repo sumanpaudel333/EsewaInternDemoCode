@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +25,13 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorResponseDto registerAuthor(Author author) throws MessagingException, IOException {
         String pass = bCryptPasswordEncoder.encode(author.getPassword());
         author.setPassword(pass);
+        List<Author> authorList = authorRepository.findAll();
+        for (Author author1 : authorList) {
+            if (author.getEmail().equals(author1.getEmail()) || author.getUsername().equals(author1.getUsername())) {
+                throw new RuntimeException("Could not register Author! Author with this email/user already exists. Try Logging in!");
+            }
+        }
+        author.setRole("USER");
         String subject = "Thank You for Registering with us!";
         String body = "Thank you for registering with us. Enjoy Blogging!";
         emailService.sendWithoutAttachement(author.getEmail(), author.getEmail(), subject, body);
@@ -32,8 +40,14 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> getAllAuthor() {
-        return authorRepository.findAll();
+    public List<AuthorResponseDto> getAllAuthor() {
+        List<Author> authorList = authorRepository.findAll();
+        List<AuthorResponseDto> authorResponseDto = new ArrayList<>();
+        for (Author author : authorList) {
+            AuthorResponseDto authorResponseDto1 = modelMapper.map(author, AuthorResponseDto.class);
+            authorResponseDto.add(authorResponseDto1);
+        }
+        return authorResponseDto;
     }
 
     @Override
