@@ -25,12 +25,12 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorResponseDto registerAuthor(Author author) throws MessagingException, IOException {
         String pass = bCryptPasswordEncoder.encode(author.getPassword());
         author.setPassword(pass);
-        List<Author> authorList = authorRepository.findAll();
-        for (Author author1 : authorList) {
+        /* List<Author> authorList = authorRepository.findAll();
+         *//* for (Author author1 : authorList) {
             if (author.getEmail().equals(author1.getEmail()) || author.getUsername().equals(author1.getUsername())) {
                 throw new RuntimeException("Could not register Author! Author with this email/user already exists. Try Logging in!");
             }
-        }
+        }*/
         author.setRole("USER");
         String subject = "Thank You for Registering with us!";
         String body = "Thank you for registering with us. Enjoy Blogging!";

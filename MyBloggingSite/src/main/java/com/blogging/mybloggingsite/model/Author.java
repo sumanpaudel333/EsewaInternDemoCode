@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,8 +26,10 @@ public class Author implements UserDetails {
     @Column(name = "full_name")
     private String fullName;
     @Column(name = "user_name")
+    @NaturalId
     private String userName;
     @Column(name = "email")
+    @NaturalId
     private String email;
     @Column(name = "password")
     private String password;
