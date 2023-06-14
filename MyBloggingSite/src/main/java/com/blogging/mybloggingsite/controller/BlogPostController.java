@@ -33,4 +33,9 @@ public class BlogPostController {
         BlogResponseDto blogPost = blogPostService.getBlogPostById(blogPostId);
         return ResponseEntity.status(HttpStatus.FOUND).body(blogPost);
     }
+    @PostMapping("/editblogpostbyid/{blogPostId}")
+    ResponseEntity<BlogResponseDto> editBlogPostById(@PathVariable String blogPostId,@RequestBody BlogPostRequestDto blogRequestDto) {
+        BlogResponseDto blogPost = blogPostService.editBlogPost(blogPostId,blogRequestDto);
+        return ResponseEntity.status(HttpStatus.FOUND).body(blogPost);
+    }
 }

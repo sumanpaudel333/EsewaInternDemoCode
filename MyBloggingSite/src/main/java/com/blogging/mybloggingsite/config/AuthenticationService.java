@@ -5,8 +5,6 @@ import com.blogging.mybloggingsite.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +20,7 @@ public AuthenticationResponse authenticate(AuthenticationRequest authenticationR
             authenticationRequest.getPassword()
     ));
     var user=authorRepository.findByUserName(authenticationRequest.getUsername()).orElseThrow();
-    UserDetails userDetails= User.withUsername(user.getUserName()).password(user.getPassword()).authorities("Admin").build();
-    var jwtToken=jwtService.generateToken(userDetails);
+    var jwtToken=jwtService.generateToken(user);
     return AuthenticationResponse.builder()
             .token(jwtToken)
             .build();

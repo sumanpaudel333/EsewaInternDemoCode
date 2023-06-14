@@ -10,4 +10,5 @@ public interface BlogPostService {
     BlogResponseDto addNewBlogPost(BlogPostRequestDto blogPost);
     BlogResponseDto getBlogPostById(String blogPostId);
     List<BlogResponseDto> getAllBlogpost();
+    BlogResponseDto editBlogPost(String blogPostId,BlogPostRequestDto blogPost);
 }
