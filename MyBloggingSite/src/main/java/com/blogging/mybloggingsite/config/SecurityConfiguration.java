@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .disable()
                 .userDetailsService(jpaUserDetailService)
                 .authorizeHttpRequests()
-                .requestMatchers("/api/authenticate","/api/mail/**")
+                .requestMatchers("/api/authenticate", "/api/mail/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

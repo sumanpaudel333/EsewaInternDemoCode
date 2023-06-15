@@ -5,9 +5,7 @@ import com.blogging.mybloggingsite.dto.BlogResponseDto;
 import com.blogging.mybloggingsite.model.Author;
 import com.blogging.mybloggingsite.model.BlogPost;
 import com.blogging.mybloggingsite.model.Category;
-import com.blogging.mybloggingsite.repo.AuthorRepository;
 import com.blogging.mybloggingsite.repo.BlogPostRepository;
-import com.blogging.mybloggingsite.repo.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,15 +17,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BlogPostServiceImpl implements BlogPostService {
     private final BlogPostRepository blogPostRepository;
-    private final CategoryRepository categoryRepository;
-    private final AuthorRepository authorRepository;
+    private final CategoryService categoryService;
+    private final AuthorService authorService;
     private final ModelMapper modelMapper;
 
     @Override
     public BlogResponseDto addNewBlogPost(BlogPostRequestDto blogPost) {
         BlogPost blogPost1 = modelMapper.map(blogPost, BlogPost.class);
-        Category category = categoryRepository.findCategoryByCategoryName(blogPost.getCategoryName());
-        Author author = authorRepository.findByUserName(blogPost.getAuthorUserName()).orElseThrow();
+        Category category = categoryService.getCategoryByName(blogPost.getCategoryName());
+        Author author = authorService.getAuthorByUsername(blogPost.getAuthorUserName());
         if (category == null) {
             throw new RuntimeException("Category does not exist! Please review your category");
         }
@@ -61,8 +59,8 @@ public class BlogPostServiceImpl implements BlogPostService {
     public BlogResponseDto editBlogPost(String blogPostId, BlogPostRequestDto blogPost) {
         blogPostRepository.findById(blogPostId).orElseThrow();
         BlogPost blogPost2 = modelMapper.map(blogPost, BlogPost.class);
-        Category category = categoryRepository.findCategoryByCategoryName(blogPost.getCategoryName());
-        Author author = authorRepository.findByUserName(blogPost.getAuthorUserName()).orElseThrow();
+        Category category = categoryService.getCategoryByName(blogPost.getCategoryName());
+        Author author = authorService.getAuthorByUsername(blogPost.getAuthorUserName());
         if (category == null) {
             throw new RuntimeException("Category does not exist! Please review your category");
         }

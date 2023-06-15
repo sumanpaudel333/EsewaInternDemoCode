@@ -1,8 +1,8 @@
 package com.blogging.mybloggingsite.controller;
 
+import com.blogging.mybloggingsite.dto.AuthorRequestDto;
 import com.blogging.mybloggingsite.dto.AuthorResponseDto;
 import com.blogging.mybloggingsite.dto.BlogResponseDto;
-import com.blogging.mybloggingsite.model.Author;
 import com.blogging.mybloggingsite.service.AuthorService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @PostMapping("/register")
-    ResponseEntity<AuthorResponseDto> registerAuthor(@RequestBody Author author) throws MessagingException, IOException {
+    ResponseEntity<AuthorResponseDto> registerAuthor(@RequestBody AuthorRequestDto author) throws MessagingException, IOException {
         AuthorResponseDto author1 = authorService.registerAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(author1);
     }
