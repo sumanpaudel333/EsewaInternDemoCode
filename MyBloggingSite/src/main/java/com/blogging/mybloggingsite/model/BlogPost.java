@@ -35,4 +35,6 @@ public class BlogPost {
     private Date publishedDate;
     @ManyToOne
     private Author author;
+    @Column(name = "post_status")
+    private String postStatus;
 }

@@ -33,6 +33,7 @@ public class BlogPostServiceImpl implements BlogPostService {
         }
         blogPost1.setCategory(category);
         blogPost1.setAuthor(author);
+        blogPost1.setPostStatus("Unpublished");
         blogPostRepository.save(blogPost1);
         return modelMapper.map(blogPost, BlogResponseDto.class);
     }
@@ -48,8 +49,10 @@ public class BlogPostServiceImpl implements BlogPostService {
         List<BlogPost> posts = blogPostRepository.findAll();
         List<BlogResponseDto> blogResponseDto = new ArrayList<>();
         for (BlogPost blogPost : posts) {
-            BlogResponseDto blogResponseDto1 = modelMapper.map(blogPost, BlogResponseDto.class);
-            blogResponseDto.add(blogResponseDto1);
+            if (blogPost.getPostStatus().equals("Published")) {
+                BlogResponseDto blogResponseDto1 = modelMapper.map(blogPost, BlogResponseDto.class);
+                blogResponseDto.add(blogResponseDto1);
+            }
         }
         return blogResponseDto;
     }

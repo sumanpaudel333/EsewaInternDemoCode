@@ -1,8 +1,11 @@
 package com.blogging.mybloggingsite.service;
 
 import com.blogging.mybloggingsite.dto.AuthorResponseDto;
+import com.blogging.mybloggingsite.dto.BlogResponseDto;
 import com.blogging.mybloggingsite.model.Author;
+import com.blogging.mybloggingsite.model.BlogPost;
 import com.blogging.mybloggingsite.repo.AuthorRepository;
+import com.blogging.mybloggingsite.repo.BlogPostRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,6 +23,7 @@ public class AuthorServiceImpl implements AuthorService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final EmailService emailService;
     private final ModelMapper modelMapper;
+    private final BlogPostRepository blogPostRepository;
 
     @Override
     public AuthorResponseDto registerAuthor(Author author) throws MessagingException, IOException {
@@ -51,7 +55,19 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author getAuthorById(Long authorId) {
-        return authorRepository.findById(authorId).orElseThrow();
+    public AuthorResponseDto getAuthorById(Long authorId) {
+        Author author =authorRepository.findById(authorId).orElseThrow();
+       return modelMapper.map(author, AuthorResponseDto.class);
+    }
+
+    @Override
+    public List<BlogResponseDto> getAuthorBlogById(Long authorId) {
+        List<BlogPost> posts=blogPostRepository.findBlogPostByAuthor_AuthorId(authorId);
+        List<BlogResponseDto> blogResponseDto=new ArrayList<>();
+        for (BlogPost blogPost:posts){
+            BlogResponseDto blogResponseDto1=modelMapper.map(blogPost, BlogResponseDto.class);
+            blogResponseDto.add(blogResponseDto1);
+        }
+        return blogResponseDto;
     }
 }

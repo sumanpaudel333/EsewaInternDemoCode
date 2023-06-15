@@ -1,6 +1,7 @@
 package com.blogging.mybloggingsite.controller;
 
 import com.blogging.mybloggingsite.dto.AuthorResponseDto;
+import com.blogging.mybloggingsite.dto.BlogResponseDto;
 import com.blogging.mybloggingsite.model.Author;
 import com.blogging.mybloggingsite.service.AuthorService;
 import jakarta.mail.MessagingException;
@@ -31,8 +32,14 @@ public class AuthorController {
     }
 
     @GetMapping("/getauthorbyid/{authorId}")
-    ResponseEntity<Author> getAuthorById(@PathVariable long authorId) {
-        Author author = authorService.getAuthorById(authorId);
+    ResponseEntity<AuthorResponseDto> getAuthorById(@PathVariable long authorId) {
+        AuthorResponseDto author = authorService.getAuthorById(authorId);
         return ResponseEntity.status(HttpStatus.FOUND).body(author);
+    }
+
+    @GetMapping("/getauthorpostsbyid/{authorId}")
+    ResponseEntity<List<BlogResponseDto>> getAuthorPostsById(@PathVariable Long authorId) {
+        List<BlogResponseDto> blogResponseDto = authorService.getAuthorBlogById(authorId);
+        return ResponseEntity.status(HttpStatus.FOUND).body(blogResponseDto);
     }
 }
