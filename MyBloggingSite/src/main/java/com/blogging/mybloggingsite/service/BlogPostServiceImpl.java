@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +41,16 @@ public class BlogPostServiceImpl implements BlogPostService {
     public BlogResponseDto getBlogPostById(String blogPostId) {
         BlogPost blogPost = blogPostRepository.findById(blogPostId).orElseThrow();
         return modelMapper.map(blogPost, BlogResponseDto.class);
+    }
+    @Override
+    public List<BlogPost> getBlogPostByPublishedDate(Date blogPostPublishedDate) {
+        return blogPostRepository.findBlogPostByPublishedDate(blogPostPublishedDate);
+       /* List<BlogResponseDto> blogResponseDto=new ArrayList<>();
+        for (BlogPost blogPost1:blogPost){
+            BlogResponseDto responseDto=modelMapper.map(blogPost1, BlogResponseDto.class);
+            blogResponseDto.add(responseDto);
+        }
+        return blogResponseDto;*/
     }
 
     @Override

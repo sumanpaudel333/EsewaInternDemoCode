@@ -2,12 +2,15 @@ package com.blogging.mybloggingsite.controller;
 
 import com.blogging.mybloggingsite.dto.BlogPostRequestDto;
 import com.blogging.mybloggingsite.dto.BlogResponseDto;
+import com.blogging.mybloggingsite.model.BlogPost;
 import com.blogging.mybloggingsite.service.BlogPostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,6 +40,11 @@ public class BlogPostController {
     @PostMapping("/editblogpostbyid/{blogPostId}")
     ResponseEntity<BlogResponseDto> editBlogPostById(@PathVariable String blogPostId, @RequestBody BlogPostRequestDto blogRequestDto) {
         BlogResponseDto blogPost = blogPostService.editBlogPost(blogPostId, blogRequestDto);
+        return ResponseEntity.status(HttpStatus.FOUND).body(blogPost);
+    }
+    @GetMapping("/getblogpostbypublisheddate/{blogPostPublishedDate}")
+    ResponseEntity<List<BlogPost>> getBlogPostByPublishedDate(@PathVariable @DateTimeFormat(pattern = "yyy-mm-dd") Date blogPostPublishedDate) {
+        List<BlogPost> blogPost = blogPostService.getBlogPostByPublishedDate(blogPostPublishedDate);
         return ResponseEntity.status(HttpStatus.FOUND).body(blogPost);
     }
 }
