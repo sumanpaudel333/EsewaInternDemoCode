@@ -12,18 +12,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerDao customerDao;
-    public List<Customer> loadAllCustomers(){
-        long start=System.currentTimeMillis();
-        List<Customer> customers=customerDao.getCustomer();
-        long end=System.currentTimeMillis();
-        System.out.println("Time Difference: "+(end-start));
+
+    public List<Customer> loadAllCustomers() {
+        long start = System.currentTimeMillis();
+        List<Customer> customers = customerDao.getCustomer();
+        long end = System.currentTimeMillis();
+        System.out.println("Time Difference: " + (end - start));
         return customers;
     }
-    public Flux<Customer> loadAllCustomersStream(){
-        long start=System.currentTimeMillis();
-        Flux<Customer> customers=customerDao.getCustomerStream();
-        long end=System.currentTimeMillis();
-        System.out.println("Time Difference: "+(end-start));
+
+    public Flux<Customer> loadAllCustomersStream() {
+        long start = System.currentTimeMillis();
+        Flux<Customer> customers = customerDao.getCustomerStream();
+        long end = System.currentTimeMillis();
+        System.out.println("Time Difference: " + (end - start));
         return customers;
     }
 }
