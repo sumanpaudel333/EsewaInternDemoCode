@@ -28,4 +28,18 @@ public class CustomerHandler {
                 .contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(customerList, Customer.class);
     }
+
+    public Mono<ServerResponse> findCustomer(ServerRequest serverRequest) {
+        int customerId = Integer.parseInt(serverRequest.pathVariable("input"));
+        Mono<Customer> customerList = customerDao.getCustomerStream().filter(c -> c.getId() == customerId).next();
+        return ServerResponse.ok()
+                .contentType(MediaType.TEXT_EVENT_STREAM)
+                .body(customerList, Customer.class);
+    }
+
+    public Mono<ServerResponse> saveCustomer(ServerRequest serverRequest) {
+        Mono<Customer> customerMono = serverRequest.bodyToMono(Customer.class);
+        Mono<String> saveResponse = customerMono.map(dto -> "id: " + dto.getId() + ":" + dto.getName());
+        return ServerResponse.ok().body(saveResponse, String.class);
+    }
 }
