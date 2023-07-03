@@ -12,10 +12,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @RequiredArgsConstructor
 public class RouterConfig {
     private final CustomerHandler customerHandler;
+
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(){
+    public RouterFunction<ServerResponse> routerFunction() {
         return RouterFunctions.route()
-                .GET("/router/customers",customerHandler::loadAllCustomers)
-                .GET("/router/customers/stream",customerHandler::loadCustomers).build();
+                .GET("/router/customers", customerHandler::loadAllCustomers)
+                .GET("/router/customers/stream", customerHandler::loadCustomers).build();
     }
 }

@@ -14,14 +14,16 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CustomerHandler {
     private final CustomerDao customerDao;
-    public Mono<ServerResponse> loadCustomers(ServerRequest serverRequest){
-        Flux<Customer> customerList=customerDao.getCustomerList();
+
+    public Mono<ServerResponse> loadCustomers(ServerRequest serverRequest) {
+        Flux<Customer> customerList = customerDao.getCustomerList();
         return ServerResponse.ok()
                 .contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(customerList, Customer.class);
     }
-    public Mono<ServerResponse> loadAllCustomers(ServerRequest serverRequest){
-        Flux<Customer> customerList=customerDao.getCustomerStream();
+
+    public Mono<ServerResponse> loadAllCustomers(ServerRequest serverRequest) {
+        Flux<Customer> customerList = customerDao.getCustomerStream();
         return ServerResponse.ok()
                 .contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(customerList, Customer.class);
