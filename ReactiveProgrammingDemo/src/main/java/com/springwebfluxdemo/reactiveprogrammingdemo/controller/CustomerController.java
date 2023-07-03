@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -17,12 +16,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
+
     @GetMapping("/getallcustomer")
-    public List<Customer> getAllCustomer(){
+    public List<Customer> getAllCustomer() {
         return customerService.loadAllCustomers();
     }
-    @GetMapping(value = "/getallcustomerbyreactive",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Customer> getAllCustomerStream(){
+
+    @GetMapping(value = "/getallcustomerbyreactive", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Customer> getAllCustomerStream() {
         return customerService.loadAllCustomersStream();
     }
 }
