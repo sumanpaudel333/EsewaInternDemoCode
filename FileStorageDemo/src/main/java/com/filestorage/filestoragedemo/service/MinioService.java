@@ -29,9 +29,11 @@ public class MinioService {
                             .contentType(file.getContentType())
                             .build()
             );
-            fileStorageService.saveFile(file.getOriginalFilename(),file.getContentType());
+            String fileContent=new String(file.getBytes());
+            fileStorageService.saveFile(file.getOriginalFilename(),file.getContentType(),fileContent);
             responseDto.setFileName(file.getOriginalFilename());
             responseDto.setFileType(file.getContentType());
+            responseDto.setFileContent(fileContent);
             System.out.println("File Uploaded Successfully");
             System.out.println(file.getContentType());
         } catch (IOException | ServerException | ErrorResponseException | InsufficientDataException |

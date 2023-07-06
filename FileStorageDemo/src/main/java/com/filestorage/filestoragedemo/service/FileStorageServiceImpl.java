@@ -11,10 +11,11 @@ public class FileStorageServiceImpl implements FileStorageService {
     private final FileStorageRepo fileStorageRepo;
 
     @Override
-    public String saveFile(String fileName,String fileType) {
+    public String saveFile(String fileName,String fileType,String fileContent) {
         FileStorage fileStorage=new FileStorage();
         fileStorage.setFileName(fileName);
         fileStorage.setFileType(fileType);
+        fileStorage.setFileContent(fileContent);
         fileStorageRepo.save(fileStorage);
         return "File Details Saved Successfully";
     }

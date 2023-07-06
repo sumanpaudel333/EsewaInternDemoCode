@@ -1,4 +1,4 @@
-package com.filestorage.filestoragedemo.dto;
+package com.cms.contentmanagementsystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FileStorageResponseDto {
-    private String fileName;
-    private String fileType;
+public class FileContentDto {
+    private String id;
     private String fileContent;
 }

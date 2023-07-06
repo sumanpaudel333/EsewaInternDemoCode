@@ -13,4 +13,5 @@ public class FileStorage {
     private String fileId;
     private String fileName;
     private String fileType;
+    private String fileContent;
 }
